@@ -1,5 +1,5 @@
 import sqlite3
-from typing import Dict, List, Tuple
+from typing import List, Tuple
 
 
 class Student:
@@ -27,7 +27,7 @@ def search(name: str) -> List[Student]:
 if __name__ == "__main__":
     name = ''
     while True:
-        name = str(input('Enter the name of the student: '))
+        name = str(input('Enter the name of the student: ')).strip()
         if (len(name) > 0):
             break
         print("Please enter a search string\n")
@@ -38,10 +38,11 @@ if __name__ == "__main__":
         print("Oops! No students present that match the search text")
 
     else:
-        print('Name\t\t|Marks')
+        print("{:20} | {}".format("Name", "Marks"))
         for req_student in req_students:
-            print(req_student.name, req_student.marks, sep="\t\t|")
-        print("=====\n")
+            print("{:20} | {}".format(
+                req_student.name, req_student.marks, sep="\t\t|"))
+        print("\n=====\n")
 
         total_score = sum([student.marks for student in req_students])
         average_score = round(total_score/len(req_students), 2)
