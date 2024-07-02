@@ -33,11 +33,14 @@ if __name__ == "__main__":
         print("Please enter a search string\n")
 
     req_students = search(name)
+    print("\nResults:\n")
 
     if (len(req_students) == 0):
         print("Oops! No students present that match the search text")
 
     else:
+        max_length_name_len = max([len(student.name)
+                                  for student in req_students])
         print("{:20} | {}".format("Name", "Marks"))
         for req_student in req_students:
             print("{:20} | {}".format(
@@ -46,4 +49,5 @@ if __name__ == "__main__":
 
         total_score = sum([student.marks for student in req_students])
         average_score = round(total_score/len(req_students), 2)
-        print(f"Total Score: {total_score}", f"Average Score: {average_score}")
+        print(f">Total Score: {total_score}",
+              f">Average Score: {average_score}", sep="\t")
